@@ -18,27 +18,26 @@ function addTask(e){
     if(taskInput.value === ''){
         alert('Add a task');
     }
-
-    //TODO: Wrap everything under the if statement in an else
-    //TODO: Fix bug where the x icon isnt appearing
-
-    // Create a li element
-    const li = document.createElement('li');
-    // Add class
-    li.className = 'collection-item';
-    //Create text node and append it to li
-    li.appendChild(document.createTextNode(taskInput.value));
-    // Create new link element
-    const link = document.createElement('a');
-    // Add class
-    link.className = 'delete-item secondary-content';
-    // Add icon html
-    link.innerHTML = '<i class="fa fa-remove"></i>';
-    // Append icon to li
-    li.appendChild(link);
-    // Append the li to the task list
-    tasklist.appendChild(li);
-    // Clear the input 
-    taskInput.value = ''
-
+    else{ 
+        // Create a li element
+        const li = document.createElement('li');
+        // Add class
+        li.className = 'collection-item';
+        //Create text node and append it to li
+        li.appendChild(document.createTextNode(taskInput.value));
+        // Create new link element
+        const link = document.createElement('a');
+        // Add class
+        link.className = 'delete-item secondary-content';
+        // Add icon html
+        link.innerHTML = '<i class="fa fa-remove"></i>';
+        // Append icon to li
+        li.appendChild(link);
+        // Append the li to the task list
+        tasklist.appendChild(li);
+        // Clear the input 
+        taskInput.value = ''
+    }
+    
+    e.preventDefault();
 }
