@@ -14,6 +14,8 @@ function loadEventListeners(){
     form.addEventListener('submit', addTask);
     // Remove task event
     tasklist.addEventListener('click', removeTask);
+    // Remove all tasks event
+    clearBtn.addEventListener('click', clearTasks);
 }
 
 function addTask(e){
@@ -45,10 +47,18 @@ function addTask(e){
 }
 
 function removeTask(e){
+    //Remove tasks when x icon is clicked
     if(e.target.classList.contains('fa-remove')){
-        // Remove the li element if confirm is true
+        // Remove a task if confirm is true
         if(confirm('Are you sure?'))
             e.target.parentElement.parentElement.remove();
     }
-    e.preventDefault();
+}
+
+function clearTasks(e){
+    // Remove all tasks if confirm is true
+    if(confirm('Are you sure?')){
+        while(tasklist.firstChild)
+            tasklist.firstChild.remove();
+    }
 }
