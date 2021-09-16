@@ -147,7 +147,14 @@ function clearTasks(e){
     if(confirm('Are you sure?')){
         while(tasklist.firstChild)
             tasklist.firstChild.remove();
+
+        // Clear from Local Storage
+        clearTasksFromLocalStorage();
     }
+}
+
+function clearTasksFromLocalStorage(){
+    localStorage.clear();
 }
 
 function filterTasks(e){
