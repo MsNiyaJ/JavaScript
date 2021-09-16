@@ -39,13 +39,36 @@ function addTask(e){
         link.innerHTML = '<i class="fa fa-remove"></i>';
         // Append icon to li
         li.appendChild(link);
+       
         // Append the li to the task list
         tasklist.appendChild(li);
+        
+        // Store in localstorage
+        storeTaskInLocalStorage(taskInput.value);
+
         // Clear the input 
         taskInput.value = ''
     }
 
     e.preventDefault();
+}
+
+function storeTaskInLocalStorage(task){
+    let tasks;
+
+    // Create a new array that will store tasks if there
+    // is none in localstorage, else get all tasks
+    if(localStorage.getItem('tasks') === null){
+        tasks = [];
+    }
+    else{
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+
+    // Push the new task into the tasks array
+    tasks.push(task);
+    // Update localstorage to include the new task
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function removeTask(e){
