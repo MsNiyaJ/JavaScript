@@ -16,6 +16,8 @@ function loadEventListeners(){
     tasklist.addEventListener('click', removeTask);
     // Remove all tasks event
     clearBtn.addEventListener('click', clearTasks);
+    // Filter tasks event
+    filter.addEventListener('keyup', filterTasks);
 }
 
 function addTask(e){
@@ -61,4 +63,23 @@ function clearTasks(e){
         while(tasklist.firstChild)
             tasklist.firstChild.remove();
     }
+}
+
+function filterTasks(e){
+    // store the text from the filter input
+    const text = e.target.value.toLowerCase();
+    
+    // Select all tasks and filter each based on the filter input
+    document.querySelectorAll('.collection-item').forEach
+    (function(task){
+
+        // If the there are a set of characters that match the 
+        // filter input, then display it, else hide it.
+        const item = task.firstChild.textContent;
+        if(item.toLowerCase().indexOf(text) != -1){
+            task.style.display = 'block'   
+        }else {
+            task.style.display = 'none'
+        }
+    });
 }
