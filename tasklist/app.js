@@ -12,6 +12,8 @@ loadEventListeners();
 function loadEventListeners(){
     // Add task event
     form.addEventListener('submit', addTask);
+    // Remove task event
+    tasklist.addEventListener('click', removeTask);
 }
 
 function addTask(e){
@@ -38,6 +40,15 @@ function addTask(e){
         // Clear the input 
         taskInput.value = ''
     }
-    
+
+    e.preventDefault();
+}
+
+function removeTask(e){
+    if(e.target.classList.contains('fa-remove')){
+        // Remove the li element if confirm is true
+        if(confirm('Are you sure?'))
+            e.target.parentElement.parentElement.remove();
+    }
     e.preventDefault();
 }
