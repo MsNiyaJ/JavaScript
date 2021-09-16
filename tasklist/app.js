@@ -112,9 +112,34 @@ function removeTask(e){
     //Remove tasks when x icon is clicked
     if(e.target.classList.contains('fa-remove')){
         // Remove a task if confirm is true
-        if(confirm('Are you sure?'))
-            e.target.parentElement.parentElement.remove();
+        if(confirm('Are you sure?')){
+            let task = e.target.parentElement.parentElement;
+            task.remove();
+            removeTaskFromLocalStorage(task);
+        }    
     }
+}
+
+function removeTaskFromLocalStorage(taskItem){
+    let tasks;
+    if(localStorage.getItem('tasks') === null){
+        tasks = [];
+    }
+    else{
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+
+    // For each task in the array, if the text matches
+    // the text content from the li element we just removed, 
+    // the that task from the array
+    tasks.forEach(function(task, index){
+        if(taskItem.textContent === task){
+            tasks.splice(index, 1);
+        }
+    });
+
+    // Update localstorage with the new array
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
 function clearTasks(e){
